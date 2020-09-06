@@ -115,21 +115,21 @@ app.post("/checkNearby/", (req, res) => {
         let place = GameData.places[i]
         if (GEO.calcDistance(userLoc, place.coordinates) < 1) {
             if (GEO.calcDistance(userLoc, place.coordinates) < 0.1) {
-                // try {
-                //     getCollection().findOne({ deviceID: deviceID }).then((user) => {
-                //         if (user) {
-                //             return res.send(user.visitedPlaces)
-                //         } else {
-                //             return res.status(404)
-                //         }
-                //     })
-                // } catch (error) {
-                //     console.log("error with checkNearby")
-                // }
+                try {
+                    getCollection().findOne({ deviceID: deviceID }).then((user) => {
+                        if (user) {
+                            return res.send(user.visitedPlaces)
+                        } else {
+                            return res.status(404)
+                        }
+                    })
+                } catch (error) {
+                    console.log("error with checkNearby")
+                }
                 return res.send({ distance: null, place: i })
 
             } else {
-                return res.send({ distance: GEO.calcDistance(userLoc, place.coordinates), place: null })
+                return res.send({ distance: GEO.calcDistance(userLoc, place.coordinates), place: place, index: i })
             }
         } else {
             return res.sendStatus(404)
