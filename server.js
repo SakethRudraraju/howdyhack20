@@ -43,18 +43,20 @@ app.get("/", (req, res) => {
 
 // create a new android user
 app.post("/newser/", (req, res) => {
-    const deviceID = req.body.deviceID;
-    const username = req.body.username;
+    // const deviceID = req.body.deviceID;
+    // const username = req.body.username;
 
 
-    //  Attempt to create new device in the database
-    getCollection().findOne({ deviceID: deviceID }).then((result) => {
-        if (result) {
-            return res.status(409)
-        } else {
-            getCollection().insertOne({ deviceID: deviceID, username: username, visitedPlaces: [] }).then(() => res.status(201))
-        }
-    })
+    // //  Attempt to create new device in the database
+    // getCollection().findOne({ deviceID: deviceID }).then((result) => {
+    //     if (result) {
+    //         return res.status(409)
+    //     } else {
+    //         getCollection().insertOne({ deviceID: deviceID, username: username, visitedPlaces: [] }).then(() => res.status(201))
+    //     }
+    // })
+
+    res.send(404)
 })
 
 
