@@ -97,11 +97,11 @@ app.get("/visited/:id", (req, res) => {
             if (user) {
                 return res.send(user.visitedPlaces)
             } else {
-                return res.status(404)
+                return res.sendStatus(404)
             }
         })
     } catch (error) {
-        if (error) return res.status(500)
+        if (error) return res.sendStatus(500)
     }
 
 })
