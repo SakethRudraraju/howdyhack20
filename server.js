@@ -59,39 +59,26 @@ app.post("/newuser/", (req, res) => {
 
 // get available hunts
 app.get("/hunts/", (req, res) => {
-    
+    // 
 })
 
 // check if near hot spot 
-app.post("/checkNearby/", (req, res) => {
-    const userLoc = req.body.coordinates
-    const deviceID = req.body.deviceID
-
-    getCollection().findOne({ deviceID: deviceID }).then((user) => {
-        if (user) {
-            let userProgress = user.huntProgress
-            for (let i in GameData.hunts) {
-                const hunt = GameData.hunts[i]
-
-                const progI = userProgress[0].progress
-                console.log("csosnoleloggg ",progI)
-                if (GEO.calcDistance(userLoc, hunt.checkpoints[progI].coordinates)<1) {
-                    res.send(`${GEO.calcDistance(userLoc, hunt.checkpoints[progI].coordinates)} miles away!`)
-                } else {
-                    res.send("None found nearby")
-                }
-            }
+app.post("/checkNearby/:lat/:long", (req, res) => {
+    const userLoc = [parseFloat(req.params.lat),parseFloat(req.params.long)]
+    for (let place of GameData.places) {
+        if (GEO.calcDistance(userLoc, place.coordinates)<1) {
+            res.send(`${GEO.calcDistance(userLoc, place.coordinates)} miles away!`)
         } else {
-            console.log("auth error")
-            return "auth error"
+            res.send("None found nearby")
         }
-    })
-
-
+    }
 })
 
-app.post("/scanqr/:code", (req, res) => {
-    res.send("bug fff")
-})
+
+
+
+// app.post("/scanqr/:code", (req, res) => {
+//     res.send("bug fff")
+// })
 
 app.listen(PORT)

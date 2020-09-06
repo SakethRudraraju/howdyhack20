@@ -1,27 +1,21 @@
 {
-    "hunts": [
+    "places": [
         {
-            "title": "Blah blah blah",
-            "checkpoints": [
-                {
-                    "name": "bonfire memorial",
-                    "coordinates": [
-                        30.622822,
-                        -96.334972
-                    ],
-                    "clue": "spooky place",
-                    "qrid": "randcode191293"
-                },
-                {
-                    "name": "bonfire memorial",
-                    "coordinates": [
-                        30.614976,
-                        -96.334159
-                    ],
-                    "clue": "spooky place",
-                    "qrid": "randcode191293"
-                }
-            ]
+            "name": "bonfire memorial",
+            "coordinates": [
+                30.622822,
+                -96.334972
+            ],
+            "clue": "spooky place"
+        },
+        {
+            "name": "bonfire memorial",
+            "coordinates": [
+                30.614976,
+                -96.334159
+            ],
+            "clue": "spooky place"
         }
     ]
+
 }
