@@ -52,7 +52,7 @@ app.post("/newuser/", (req, res) => {
         if (result) {
             return res.status(409)
         } else {
-            let huntProgress = GameData.hunts.map((x) => { return { title: x.title, progress: 0 } })
+            let huntProgress = GameData.places.map((x) => { return { title: x.title, progress: 0 } })
 
             getCollection().insertOne({ deviceID: deviceID, username: username, visitedPlaces: [] }).then(() => res.status(201))
         }
