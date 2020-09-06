@@ -46,13 +46,13 @@ app.post("/newuser/", (req, res) => {
     const deviceID = req.body.deviceID;
     const username = req.body.username;
 
-
     //  Attempt to create new device in the database
     getCollection().findOne({ deviceID: deviceID }).then((result) => {
         if (result) {
-            return res.status(409)
+            return res.send(409)
         } else {
-            getCollection().insertOne({ deviceID: deviceID, username: username, visitedPlaces: [] }).then(() => res.status(201))
+            console.log("works 1", username)
+            getCollection().insertOne({ deviceID: deviceID, username : username, visitedPlaces: [] }).then(() => res.send(201))
         }
     })
 
