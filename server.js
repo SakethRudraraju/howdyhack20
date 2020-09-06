@@ -90,12 +90,12 @@ app.get("/places/", (req, res) => {
 })
 
 app.get("/visited/:id", (req, res) => {
-    const deviceID = req.param.id
+    const deviceID = req.params.id
     //  Attempt to create new device in the database
     try {
         getCollection().findOne({ deviceID: deviceID }).then((user) => {
             if (user) {
-                return res.send(user.visitedPlaces)
+                return res.send(user.visitedPlaces.map(x=>parseInt(x)))
             } else {
                 return res.sendStatus(404)
             }
