@@ -42,7 +42,7 @@ app.get("/", (req, res) => {
 })
 
 // create a new android user
-app.post("/newuser/", (req, res) => {
+app.post("/newser/", (req, res) => {
     const deviceID = req.body.deviceID;
     const username = req.body.username;
 
@@ -52,8 +52,6 @@ app.post("/newuser/", (req, res) => {
         if (result) {
             return res.status(409)
         } else {
-            let huntProgress = GameData.places.map((x) => { return { title: x.title, progress: 0 } })
-
             getCollection().insertOne({ deviceID: deviceID, username: username, visitedPlaces: [] }).then(() => res.status(201))
         }
     })
