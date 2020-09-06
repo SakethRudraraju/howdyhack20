@@ -42,7 +42,7 @@ app.get("/", (req, res) => {
 })
 
 // create a new android user
-app.post("/newser/", (req, res) => {
+app.post("/newuser/", (req, res) => {
     const deviceID = req.body.deviceID;
     const username = req.body.username;
 
