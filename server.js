@@ -82,10 +82,20 @@ app.get("/checkNearby/:lat/:long", (req, res) => {
 
 
 app.get("/leaderboard", (req,res)=>{
-    res.send({
+    res.send([{
         username : "ujeet",
         placesFound : 10
-    })
+    }, {
+        username : "saket",
+        placesFound : 10
+    }, {
+        username : "yoshi",
+        placesFound : 10
+    },
+    {
+        username : "rave",
+        placesFound : 10
+    }])
 })
 
 
