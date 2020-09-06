@@ -44,7 +44,7 @@ app.get("/", (req, res) => {
 // create a new android user
 app.post("/newuser/", (req, res) => {
     const deviceID = req.body.deviceID;
-    const userID = req.body.username;
+    const username = req.body.username;
 
 
     //  Attempt to create new device in the database
@@ -93,13 +93,18 @@ app.get("/places/", (req, res) => {
 app.get("/visited/:id", (req, res) => {
     const deviceID = req.param.id
     //  Attempt to create new device in the database
-    getCollection().findOne({ deviceID: deviceID }).then((user) => {
-        if (user) {
-            return res.send(user.visitedPlaces)
-        } else {
-            res.status(404)
-        }
-    })
+    try {
+        getCollection().findOne({ deviceID: deviceID }).then((user) => {
+            if (user) {
+                return res.send(user.visitedPlaces)
+            } else {
+                return res.status(404)
+            }
+        })
+    } catch (error) {
+        if (error) return res.status(500)
+    }
+
 })
 
 
@@ -111,6 +116,17 @@ app.post("/checkNearby/", (req, res) => {
         let palce = GameData.places[i]
         if (GEO.calcDistance(userLoc, place.coordinates) < 1) {
             if (GEO.calcDistance(userLoc, place.coordinates) < 0.1) {
+                try {
+                    getCollection().findOne({ deviceID: deviceID }).then((user) => {
+                        if (user) {
+                            return res.send(user.visitedPlaces)
+                        } else {
+                            return res.status(404)
+                        }
+                    })
+                } catch (error) {
+                    console.log("error with checkNearby")
+                }
                 return res.send({ distance: null, place: i })
 
             } else {
