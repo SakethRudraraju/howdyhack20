@@ -113,7 +113,7 @@ app.post("/checkNearby/", (req, res) => {
     const deviceID = req.body.deviceID
     for (let i in GameData.places) {
         let place = GameData.places[i]
-        if (GEO.calcDistance(userLoc, place.coordinates) < 1) {
+        if (GEO.calcDistance(userLoc, place.coordinates) < 100) {
             if (GEO.calcDistance(userLoc, place.coordinates) < 0.1) {
                 try {
                     getCollection().updateOne({ deviceID: deviceID }, { $push: { visitedPlaces: i } }, function (err, res) {
