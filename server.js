@@ -67,7 +67,7 @@ app.get("/checkNearby/:lat/:long", (req, res) => {
     const userLoc = [parseFloat(req.params.lat),parseFloat(req.params.long)]
     for (let place of GameData.places) {
         if (GEO.calcDistance(userLoc, place.coordinates)<1) {
-            res.send(`${GEO.calcDistance(userLoc, place.coordinates)} miles away!`)
+            res.send(`${GEO.calcDistance(userLoc, place.coordinates)}`)
         } else {
             res.send("None found nearby")
         }
