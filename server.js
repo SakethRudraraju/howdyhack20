@@ -37,9 +37,16 @@ app.use(express.json())
 app.use(cors())
 
 
-app.get("/", (req, res) => {
-    res.sendFile('./DOCUMENTATION.html', { root: __dirname })
+const path = require("path")
+app.use(express.static(path.join(__dirname, 'build')))
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'))
 })
+
+
+
+
 
 // create a new android user
 app.post("/newuser/", (req, res) => {
