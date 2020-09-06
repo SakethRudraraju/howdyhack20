@@ -107,11 +107,10 @@
             ]
         },
         {
-            "name": "Albritton Tower",
+            "name": "Someone's House",
             "description": "The Albritton Tower is a 138ft tower with bells that ring every hour. The bells play special tunes during games and Silver Taps.",
             "coordinates": [
-                30.613075,
-                -96.344748
+                30.490233, -97.725519
             ],
             "clues": [
                 "I ring With pride and honor For all past, present, and future Students of Texas A&M University"
