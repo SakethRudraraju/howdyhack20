@@ -69,7 +69,7 @@ app.get("/checkNearby/:lat/:long", (req, res) => {
         if (GEO.calcDistance(userLoc, place.coordinates)<1) {
             res.send(`${GEO.calcDistance(userLoc, place.coordinates)}`)
         } else {
-            res.send("None found nearby")
+            res.send(404)
         }
     }
 })
