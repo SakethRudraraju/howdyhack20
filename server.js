@@ -52,7 +52,7 @@ app.post("/newuser/", (req, res) => {
             return res.send(409)
         } else {
             console.log("works 1", username)
-            getCollection().insertOne({ deviceID: deviceID, username : username, visitedPlaces: [] }).then(() => res.send(201))
+            getCollection().insertOne({ deviceID: deviceID, username: username, visitedPlaces: [] }).then(() => res.send(201))
         }
     })
 
@@ -116,12 +116,9 @@ app.post("/checkNearby/", (req, res) => {
         if (GEO.calcDistance(userLoc, place.coordinates) < 1) {
             if (GEO.calcDistance(userLoc, place.coordinates) < 0.1) {
                 try {
-                    getCollection().findOne({ deviceID: deviceID }).then((user) => {
-                        if (user) {
-                            return res.send(user.visitedPlaces)
-                        } else {
-                            return res.status(404)
-                        }
+                    getCollection().updateOne({ deviceID: deviceID }, { $push: { visitedPlaces: i } }, function (err, res) {
+                        if (err) throw err;
+                        console.log("1 document updated");
                     })
                 } catch (error) {
                     console.log("error with checkNearby")
@@ -140,6 +137,14 @@ app.post("/checkNearby/", (req, res) => {
 
 
 app.get("/leaderboard", (req, res) => {
+
+    // getCollection().find({}).toArray(function (err, result) {
+    //     if (err) throw err;
+    //     let filtered = result.sort((a,b)=>{return a.visitedPlaces.length-b.visitedPlaces.length}).map(item=>{return {username: item.username, visitedPlaces : item.visitedPlaces.length }})
+    //     console.log(filtered)
+    // })
+
+
     res.send([{
         username: "ujeet",
         placesFound: 10
@@ -155,6 +160,43 @@ app.get("/leaderboard", (req, res) => {
         placesFound: 10
     }])
 })
+
+
+
+
+
+
+
+//#region  TESTTT
+
+
+app.get("/test/leaderboard", (req, res) => {
+
+    getCollection().find({}).toArray(function (err, result) {
+        if (err) throw err;
+        let filtered = result.sort((a,b)=>{return a.visitedPlaces.length-b.visitedPlaces.length}).map(item=>{return {username: item.username, visitedPlaces : item.visitedPlaces.length }})
+        console.log(filtered)
+    })
+
+
+    // res.send([{
+    //     username: "ujeet",
+    //     placesFound: 10
+    // }, {
+    //     username: "saket",
+    //     placesFound: 10
+    // }, {
+    //     username: "yoshi",
+    //     placesFound: 10
+    // },
+    // {
+    //     username: "rave",
+    //     placesFound: 10
+    // }])
+})
+//#endregion
+
+
 
 
 
