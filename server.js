@@ -132,7 +132,7 @@ app.post("/checkNearby/", (req, res) => {
                 return res.send({ distance: GEO.calcDistance(userLoc, place.coordinates), place: null })
             }
         } else {
-            return res.send(404)
+            return res.sendStatus(404)
         }
     }
 })
