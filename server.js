@@ -54,25 +54,50 @@ app.post("/newuser/", (req, res) => {
         } else {
             let huntProgress = GameData.hunts.map((x) => { return { title: x.title, progress: 0 } })
 
-            getCollection().insertOne({ deviceID: deviceID, username: username, visitedPlaces : [] }).then(() => res.status(201))
+            getCollection().insertOne({ deviceID: deviceID, username: username, visitedPlaces: [] }).then(() => res.status(201))
         }
     })
 })
 
+
+app.post("/selfie/", (req, res) => {
+    // const deviceID = req.body.deviceID;
+    // const userID = req.body.username;
+
+
+    // //  Attempt to create new device in the database
+    // getCollection().findOne({ deviceID: deviceID }).then((result) => {
+    //     if (result) {
+    //         return res.status(204)
+    //     } else {
+    //         let huntProgress = GameData.hunts.map((x) => { return { title: x.title, progress: 0 } })
+
+    //         getCollection().insertOne({ deviceID: deviceID, username: username, visitedPlaces : [] }).then(() => res.status(201))
+    //     }
+    // })
+
+
+    //demo endpoint
+    res.send("success")
+})
+
+app.get("/photos/:deviceID", (req, res) => {
+    res.sendFile('demo.png', { root: __dirname })
+})
+
 // get available hunts
 app.get("/places/", (req, res) => {
-     res.send(GameData.places)
+    res.send(GameData.places)
 })
 
 
 
-
-
 // check if near hot spot 
-app.get("/checkNearby/:lat/:long", (req, res) => {
-    const userLoc = [parseFloat(req.params.lat),parseFloat(req.params.long)]
+app.get("/checkNearby/", (req, res) => {
+    const userLoc = [parseFloat(req.body.lat), parseFloat(req.body.long)]
+    const deviceID = req.body.deviceID
     for (let place of GameData.places) {
-        if (GEO.calcDistance(userLoc, place.coordinates)<1) {
+        if (GEO.calcDistance(userLoc, place.coordinates) < 1) {
             res.send(`${GEO.calcDistance(userLoc, place.coordinates)}`)
         } else {
             res.send(404)
@@ -81,22 +106,25 @@ app.get("/checkNearby/:lat/:long", (req, res) => {
 })
 
 
-app.get("/leaderboard", (req,res)=>{
+
+app.get("/leaderboard", (req, res) => {
     res.send([{
-        username : "ujeet",
-        placesFound : 10
+        username: "ujeet",
+        placesFound: 10
     }, {
-        username : "saket",
-        placesFound : 10
+        username: "saket",
+        placesFound: 10
     }, {
-        username : "yoshi",
-        placesFound : 10
+        username: "yoshi",
+        placesFound: 10
     },
     {
-        username : "rave",
-        placesFound : 10
+        username: "rave",
+        placesFound: 10
     }])
 })
+
+
 
 
 
