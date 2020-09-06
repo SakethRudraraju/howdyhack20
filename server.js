@@ -121,27 +121,50 @@ app.get("/visited/:id", (req, res) => {
 app.post("/checkNearby/", (req, res) => {
     const userLoc = [parseFloat(req.body.coordinates[0]), parseFloat(req.body.coordinates[1])]
     const deviceID = req.body.deviceID
-    for (let i in GameData.places) {
-        let place = GameData.places[i]
-        if (GEO.calcDistance(userLoc, place.coordinates) < 1) {
-            if (GEO.calcDistance(userLoc, place.coordinates) < 0.1) {
-                try {
-                    getCollection().updateOne({ deviceID: deviceID }, { $push: { visitedPlaces: i } }, function (err, res) {
-                        if (err) throw err;
-                        console.log("1 document updated");
-                    })
-                } catch (error) {
-                    console.log("error with checkNearby")
-                }
-                return res.send({ distance: null, place: i })
-
-            } else {
-                return res.send({ distance: GEO.calcDistance(userLoc, place.coordinates), place: place, index: i })
+    let nearestList = GameData.places.sort((a,b)=>{ return (GEO.calcDistance(userLoc, a.coordinates)-GEO.calcDistance(userLoc, b.coordinates) )})
+    let place = nearestList[0]
+    let i = 0
+    if (GEO.calcDistance(userLoc, place.coordinates)) {
+        if (GEO.calcDistance(userLoc, place.coordinates) < 0.1) {
+            try {
+                getCollection().updateOne({ deviceID: deviceID }, { $push: { visitedPlaces: i } }, function (err, res) {
+                    if (err) throw err;
+                    console.log("1 document updated");
+                })
+            } catch (error) {
+                console.log("error with checkNearby")
             }
-        } else if (i == (GameData.places.length - 1)) {
-            return res.sendStatus(404)
+            return res.send({ distance: null, place: place, index : i })
+
+        } else {
+            return res.send({ distance: GEO.calcDistance(userLoc, place.coordinates), place: place, index: i })
         }
     }
+
+
+    // for (let i in GameData.places) {
+    //     let place = GameData.places[i]
+
+
+    //     if (GEO.calcDistance(userLoc, place.coordinates) < 1) {
+    //         if (GEO.calcDistance(userLoc, place.coordinates) < 0.1) {
+    //             try {
+    //                 getCollection().updateOne({ deviceID: deviceID }, { $push: { visitedPlaces: i } }, function (err, res) {
+    //                     if (err) throw err;
+    //                     console.log("1 document updated");
+    //                 })
+    //             } catch (error) {
+    //                 console.log("error with checkNearby")
+    //             }
+    //             return res.send({ distance: null, place: place, index : i })
+
+    //         } else {
+    //             return res.send({ distance: GEO.calcDistance(userLoc, place.coordinates), place: place, index: i })
+    //         }
+    //     } else if (i == (GameData.places.length - 1)) {
+    //         return res.sendStatus(404)
+    //     }
+    // }
 })
 
 
