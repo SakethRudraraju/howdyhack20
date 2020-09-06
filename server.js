@@ -63,7 +63,7 @@ app.get("/hunts/", (req, res) => {
 })
 
 // check if near hot spot 
-app.post("/checkNearby/:lat/:long", (req, res) => {
+app.get("/checkNearby/:lat/:long", (req, res) => {
     const userLoc = [parseFloat(req.params.lat),parseFloat(req.params.long)]
     for (let place of GameData.places) {
         if (GEO.calcDistance(userLoc, place.coordinates)<1) {
