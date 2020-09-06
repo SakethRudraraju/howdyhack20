@@ -90,9 +90,9 @@ app.get("/places/", (req, res) => {
     res.send(GameData.places)
 })
 
-app.get("/visitedplaces/:id", (req, res) => {
-    const
-})
+// app.get("/visitedplaces/:id", (req, res) => {
+//     // 
+// })
 
 
 // check if near hot spot 
