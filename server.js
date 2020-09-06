@@ -90,15 +90,24 @@ app.get("/places/", (req, res) => {
     res.send(GameData.places)
 })
 
+app.get("/visitedplaces/:id", (req, res) => {
+    const
+})
 
 
 // check if near hot spot 
 app.get("/checkNearby/", (req, res) => {
     const userLoc = [parseFloat(req.body.lat), parseFloat(req.body.long)]
     const deviceID = req.body.deviceID
-    for (let place of GameData.places) {
+    for (let i in GameData.places) {
+        let palce = GameData.places[i]
         if (GEO.calcDistance(userLoc, place.coordinates) < 1) {
-            res.send(`${GEO.calcDistance(userLoc, place.coordinates)}`)
+            if (GEO.calcDistance(userLoc, place.coordinates) < 0.1) {
+                return res.send({ distance: null, place: i })
+
+            } else {
+                res.send({ distance: GEO.calcDistance(userLoc, place.coordinates), place: null })
+            }
         } else {
             res.send(404)
         }
