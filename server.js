@@ -50,7 +50,7 @@ app.post("/newuser/", (req, res) => {
     //  Attempt to create new device in the database
     getCollection().findOne({ deviceID: deviceID }).then((result) => {
         if (result) {
-            return res.status(204)
+            return res.status(409)
         } else {
             let huntProgress = GameData.hunts.map((x) => { return { title: x.title, progress: 0 } })
 
@@ -90,13 +90,21 @@ app.get("/places/", (req, res) => {
     res.send(GameData.places)
 })
 
-// app.get("/visitedplaces/:id", (req, res) => {
-//     // 
-// })
+app.get("/visited/:id", (req, res) => {
+    const deviceID = req.param.id
+    //  Attempt to create new device in the database
+    getCollection().findOne({ deviceID: deviceID }).then((user) => {
+        if (user) {
+            return res.send(user.visitedPlaces)
+        } else {
+            res.status(404)
+        }
+    })
+})
 
 
 // check if near hot spot 
-app.get("/checkNearby/", (req, res) => {
+app.post("/checkNearby/", (req, res) => {
     const userLoc = [parseFloat(req.body.lat), parseFloat(req.body.long)]
     const deviceID = req.body.deviceID
     for (let i in GameData.places) {
@@ -106,10 +114,10 @@ app.get("/checkNearby/", (req, res) => {
                 return res.send({ distance: null, place: i })
 
             } else {
-                res.send({ distance: GEO.calcDistance(userLoc, place.coordinates), place: null })
+                return res.send({ distance: GEO.calcDistance(userLoc, place.coordinates), place: null })
             }
         } else {
-            res.send(404)
+            return res.send(404)
         }
     }
 })
