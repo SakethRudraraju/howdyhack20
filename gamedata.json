@@ -1,21 +1,121 @@
 {
     "places": [
         {
-            "name": "bonfire memorial",
+            "name": "Bonfire Memorial",
+            "description": "The Bonfire Memorial embodies many layers of meaning associated with the Aggie Spirit—a deep sense of belonging, a strong spirit of teamwork and leadership and an enduring sense of tradition that unites thousands. Uniting Aggies from the past, present and future, the Bonfire Memorial celebrates the tradition, history and spirit of Texas A&M, and the dedication of those involved in the tragic collapse of the 1999 Bonfire.",
             "coordinates": [
-                30.622822,
-                -96.334972
+                30.6155253,
+                -96.3332428
             ],
-            "clue": "spooky place"
+            "clues": [
+                "A memorial of a tradition dating back a hundred years that symbolized Aggie Spirit.",
+                "12 Aggies lost their lives in this accident. Here."
+            ]
         },
         {
-            "name": "bonfire memorial",
+            "name": "YMCA Building",
+            "description": "Yell Practice became a regular after-dinner ritual in 1913, but the first Midnight Yell wasn’t held until 1931. It began when a group of cadets was gathered in Peanut Owens’ dorm room in Puryear Hall, when someone suggested that all of the freshmen should meet on the steps of the YMCA Building at midnight to practice yells. The freshman asked the two senior yell leaders at the time to attend. The two said they couldn’t authorize the event, but they just might happen to show up. Word about the midnight gathering quickly spread, and that evening, Midnight Yell was born.",
             "coordinates": [
-                30.614976,
-                -96.334159
+                30.61512,
+                -96.342336
             ],
-            "clue": "spooky place"
+            "clues": [
+                "The location of the first midnight yell.",
+                "It\"s close to the Academic building."
+            ]
+        },
+        {
+            "name": "MSC - Flag Room",
+            "description": "The Flag Room, also known as the “living room of Texas A&M,” is a place where students often gather to study, meet friends to eat, have meetings, or just to take a nap between classes.",
+            "coordinates": [
+                30.612258,
+                -96.34142
+            ],
+            "clues": [
+                "A room decorated with a variety of flags. Occasionally, you can find Aggies performing piano concerts here.",
+                "It\"s located right in the middle of campus."
+            ]
+        },
+        {
+            "name": "George Bush Presidential Library and Museum",
+            "description": "The George H.W. Bush Presidential Library and Museum is the presidential library and burial site of George H. W. Bush, the 41st President of the United States, and his wife Barbara Bush.",
+            "coordinates": [
+                30.596655,
+                -96.353566
+            ],
+            "clues": [
+                "Library and burial site of a famous alumni.",
+                "He was a former President of the United States."
+            ]
+        },
+        {
+            "name": "Century Tree",
+            "description": "The Century Tree, located near the Academic Building, is a place that holds a special place in the heart of many Aggies. Well over 100 years old, the tree was one of the first trees planted on Texas A&M's massive 5,200-acre campus. The beautiful live oak has been the site of countless Aggie marriage proposals, weddings, and tourist snapshots because of its immense size and its unique drooping branches, many of which rest on the ground. Tradition says that if a couple walks together underneath the Century Tree, they will eventually marry — and if a marriage proposal takes place under the tree, the marriage will last forever.",
+            "coordinates": [
+                30.615894,
+                -96.34135
+            ],
+            "clues": [
+                "Legend says that if a couple walks under this then they’ll get married."
+            ]
+        },
+        {
+            "name": "12th Man Statue",
+            "description": "The tradition of the 12th Man was born on January 2, 1922, when the Aggies took the field against Centre College, then the nation’s top ranked college football team, in the Dixie Classic (now the Cotton Bowl). The Aggies fought hard and kept the game close, but as the game wore on, the strength and power of Centre was literally taking its toll.  The first half produced so many injuries for A&M that Coach D. X. Bible feared he wouldn’t have enough men to finish the game, so, he called into the Aggie section of the stands for E. King Gill, a reserve who had left football after the regular season to play basketball. Gill, who was spotting players for reporters at the time and was not in football uniform, willingly volunteered and donned the uniform of injured player Heine Weir.  Gill stood ready throughout the rest of the game and when it ended with an A&M victory, 22–14, E. King Gill was the only man left standing on the sidelines for the Aggies.",
+            "coordinates": [
+                30.611896,
+                -96.34021
+            ],
+            "clues": [
+                "A statue that symbolizes the willingness of Aggies to serve when called to do so.",
+                "It created the Aggie tradition of standing up throughout the entirety of football games"
+            ]
+        },
+        {
+            "name": "Dixie Chicken",
+            "description": "One of the most recognizable restaurants in College Station,” the Dixie Chicken is known as Texas A&M's 'favorite local watering hole.' The Dixie Chicken is the oldest and most famous bar in the Northgate district, has a live rattlesnake on the premises, and has been home to weekly domino tournaments, although not currently.",
+            "coordinates": [
+                30.617857,
+                -96.346216
+            ],
+            "clues": [
+                "Aggies come here to fulfill the tradition of drinking jugs of beer after dunking their class ring in them.",
+                "It\"s right next to an alley of bottle caps."
+            ]
+        },
+        {
+            "name": "Aggie Code of Honor",
+            "description": "Inside the Corps Arches, is a bronze sculpture of the Aggie Ring on a stone pedestal. The pedestal bears a plaque inscribed with the Aggie Code of Honor: “An Aggie does not lie, cheat, or steal, nor tolerate those who do.”",
+            "coordinates": [
+                30.61428,
+                -96.337505
+            ],
+            "clues": [
+                "An Aggie does not lie, cheat, or steal, nor tolerate those who do."
+            ]
+        },
+        {
+            "name": "Rudder Star",
+            "description": "While president of Texas A&M, Rudder is credited for transforming the University from a small land-grant college to a renowned university. Specifically, he made membership in the Corps of Cadets optional, allowed women to attend, and led efforts to integrate the campus. While the changes were hugely unpopular to the former students (it has been said only a president with Rudder’s heroic military record could pull off such drastic changes), there is no doubt these changes freed Texas A&M to become one of the largest universities in the U.S. There are many reminders of Rudder on campus, including Rudder Tower, next to the Memorial Student Center. A special training unit within the Corps of Cadets known as “Rudder’s Rangers” is named in his honor.",
+            "coordinates": [
+                30.61362,
+                -96.34022
+            ],
+            "clues": [
+                "A star honoring a former President of A&M who strived to make the campus more inclusive.",
+                "Located in the middle of campus"
+            ]
+        },
+        {
+            "name": "Albritton Tower",
+            "description": "The Albritton Tower is a 138ft tower with bells that ring every hour. The bells play special tunes during games and Silver Taps.",
+            "coordinates": [
+                30.613075,
+                -96.344748
+            ],
+            "clues": [
+                "I ring With pride and honor For all past, present, and future Students of Texas A&M University"
+            ]
         }
     ]
-
 }
