@@ -95,7 +95,7 @@ app.get("/visited/:id", (req, res) => {
     try {
         getCollection().findOne({ deviceID: deviceID }).then((user) => {
             if (user) {
-                return res.send(user.visitedPlaces.map(x=>parseInt(x)))
+                return res.send(user.visitedPlaces.map(x => parseInt(x)))
             } else {
                 return res.sendStatus(404)
             }
@@ -113,7 +113,7 @@ app.post("/checkNearby/", (req, res) => {
     const deviceID = req.body.deviceID
     for (let i in GameData.places) {
         let place = GameData.places[i]
-        if (GEO.calcDistance(userLoc, place.coordinates) < 100) {
+        if (GEO.calcDistance(userLoc, place.coordinates) < 1) {
             if (GEO.calcDistance(userLoc, place.coordinates) < 0.1) {
                 try {
                     getCollection().updateOne({ deviceID: deviceID }, { $push: { visitedPlaces: i } }, function (err, res) {
@@ -128,7 +128,7 @@ app.post("/checkNearby/", (req, res) => {
             } else {
                 return res.send({ distance: GEO.calcDistance(userLoc, place.coordinates), place: place, index: i })
             }
-        } else {
+        } else if (i == (GameData.places.length - 1)) {
             return res.sendStatus(404)
         }
     }
@@ -174,7 +174,7 @@ app.get("/test/leaderboard", (req, res) => {
 
     getCollection().find({}).toArray(function (err, result) {
         if (err) throw err;
-        let filtered = result.sort((a,b)=>{return a.visitedPlaces.length-b.visitedPlaces.length}).map(item=>{return {username: item.username, visitedPlaces : item.visitedPlaces.length }})
+        let filtered = result.sort((a, b) => { return a.visitedPlaces.length - b.visitedPlaces.length }).map(item => { return { username: item.username, visitedPlaces: item.visitedPlaces.length } })
         res.send(filtered)
     })
 
