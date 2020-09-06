@@ -44,6 +44,8 @@ app.get("/", (req, res) => {
 // create a new android user
 app.post("/newuser/", (req, res) => {
     const deviceID = req.body.deviceID;
+    const userID = req.body.username;
+
 
     //  Attempt to create new device in the database
     getCollection().findOne({ deviceID: deviceID }).then((result) => {
@@ -51,8 +53,8 @@ app.post("/newuser/", (req, res) => {
             return res.status(204)
         } else {
             let huntProgress = GameData.hunts.map((x) => { return { title: x.title, progress: 0 } })
-            
-            getCollection().insertOne({ deviceID: deviceID, huntProgress: huntProgress }).then(() => res.status(201))
+
+            getCollection().insertOne({ deviceID: deviceID, username: username, visitedPlaces : [] }).then(() => res.status(201))
         }
     })
 })
@@ -61,6 +63,10 @@ app.post("/newuser/", (req, res) => {
 app.get("/places/", (req, res) => {
      res.send(GameData.places)
 })
+
+
+
+
 
 // check if near hot spot 
 app.get("/checkNearby/:lat/:long", (req, res) => {
@@ -74,6 +80,13 @@ app.get("/checkNearby/:lat/:long", (req, res) => {
     }
 })
 
+
+app.get("/leaderboard", (req,res)=>{
+    res.send({
+        username : "ujeet",
+        placesFound : 10
+    })
+})
 
 
 
