@@ -112,7 +112,7 @@ app.post("/checkNearby/", (req, res) => {
     const userLoc = [parseFloat(req.body.lat), parseFloat(req.body.long)]
     const deviceID = req.body.deviceID
     for (let i in GameData.places) {
-        let palce = GameData.places[i]
+        let place = GameData.places[i]
         if (GEO.calcDistance(userLoc, place.coordinates) < 1) {
             if (GEO.calcDistance(userLoc, place.coordinates) < 0.1) {
                 // try {

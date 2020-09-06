@@ -1,7 +1,7 @@
 
 //calculates the distance between two points and returns in miles
 function calcDistance(from, to) {
-    var R = 6371; // km
+    var R = 3958.8; // miles
     var dLat = toRad(from[0] - to[0]);
     var dLon = toRad(from[1] - to[1]);
     var lat1 = toRad(from[0]);
