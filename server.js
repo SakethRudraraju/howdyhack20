@@ -175,7 +175,7 @@ app.get("/test/leaderboard", (req, res) => {
     getCollection().find({}).toArray(function (err, result) {
         if (err) throw err;
         let filtered = result.sort((a,b)=>{return a.visitedPlaces.length-b.visitedPlaces.length}).map(item=>{return {username: item.username, visitedPlaces : item.visitedPlaces.length }})
-        console.log(filtered)
+        res.send(filtered)
     })
 
 
