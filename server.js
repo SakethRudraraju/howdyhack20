@@ -137,28 +137,11 @@ app.post("/checkNearby/", (req, res) => {
 
 
 app.get("/leaderboard", (req, res) => {
-
-    // getCollection().find({}).toArray(function (err, result) {
-    //     if (err) throw err;
-    //     let filtered = result.sort((a,b)=>{return a.visitedPlaces.length-b.visitedPlaces.length}).map(item=>{return {username: item.username, visitedPlaces : item.visitedPlaces.length }})
-    //     console.log(filtered)
-    // })
-
-
-    res.send([{
-        username: "ujeet",
-        placesFound: 10
-    }, {
-        username: "saket",
-        placesFound: 10
-    }, {
-        username: "yoshi",
-        placesFound: 10
-    },
-    {
-        username: "rave",
-        placesFound: 10
-    }])
+    getCollection().find({}).toArray(function (err, result) {
+        if (err) throw err;
+        let filtered = result.sort((a, b) => { return a.visitedPlaces.length - b.visitedPlaces.length }).map(item => { return { username: item.username, visitedPlaces: item.visitedPlaces.length } })
+        res.send(filtered)
+    })
 })
 
 
