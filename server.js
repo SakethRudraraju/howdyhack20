@@ -48,18 +48,18 @@ app.post("/newuser/", (req, res) => {
     //  Attempt to create new device in the database
     getCollection().findOne({ deviceID: deviceID }).then((result) => {
         if (result) {
-            return res.send("Device already exists in the server!")
+            return res.status(204)
         } else {
             let huntProgress = GameData.hunts.map((x) => { return { title: x.title, progress: 0 } })
-
-            getCollection().insertOne({ deviceID: deviceID, huntProgress: huntProgress }).then(() => res.send("Successfuly rergistered device!"))
+            
+            getCollection().insertOne({ deviceID: deviceID, huntProgress: huntProgress }).then(() => res.status(201))
         }
     })
 })
 
 // get available hunts
-app.get("/hunts/", (req, res) => {
-    // 
+app.get("/places/", (req, res) => {
+     res.send(GameData.places)
 })
 
 // check if near hot spot 
