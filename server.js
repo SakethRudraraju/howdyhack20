@@ -109,7 +109,7 @@ app.get("/visited/:id", (req, res) => {
 
 // check if near hot spot 
 app.post("/checkNearby/", (req, res) => {
-    const userLoc = [parseFloat(req.body.lat), parseFloat(req.body.long)]
+    const userLoc = [parseFloat(req.body.coordinates[0]), parseFloat(req.body.coordinates[1])]
     const deviceID = req.body.deviceID
     for (let i in GameData.places) {
         let place = GameData.places[i]
